@@ -148,6 +148,7 @@
 
     </LinearLayout>
 
+
     <!--game status text display-->
     <TextView
         android:id="@+id/status"
@@ -161,5 +162,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="gameReset"
+        android:text="Play Again"
+        android:visibility="invisible"
+        tools:ignore="MissingConstraints"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

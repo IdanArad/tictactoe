@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         // game reset function will be called
         // if someone wins or the boxes are full
         if (!gameActive) {
-            gameReset(view);
+            showButton(view);
         }
 
         // if the tapped image is empty
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             if (counter == 9) {
                 // reset the game
                 gameActive = false;
+                showButton(view);
             }
 
             // mark this position
@@ -99,18 +101,24 @@ public class MainActivity extends AppCompatActivity {
                 // Update the status bar for winner announcement
                 TextView status = findViewById(R.id.status);
                 status.setText(winnerStr);
+                showButton(view);
             }
         }
         // set the status if the match draw
         if (counter == 9 && flag == 0) {
             TextView status = findViewById(R.id.status);
             status.setText("Match Draw");
+            gameActive = false;
+            showButton(view);
         }
     }
 
     // reset the game
     public void gameReset(View view) {
+        Button playAgainButton = findViewById(R.id.button);
+        playAgainButton.setVisibility(view.INVISIBLE);
         gameActive = true;
+        counter = 0;
         activePlayer = 0;
         for (int i = 0; i < gameState.length; i++) {
             gameState[i] = 2;
@@ -128,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
 
         TextView status = findViewById(R.id.status);
         status.setText("X's Turn - Tap to play");
+    }
+
+    public void showButton(View view) {
+        Button playAgainButton = findViewById(R.id.button);
+        playAgainButton.setVisibility(view.VISIBLE);
+        gameActive = false;
     }
 
     @Override
